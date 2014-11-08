@@ -21,7 +21,7 @@ class Dataset
     array.each do |a|
       h = {}
       a.each.with_index do |v,index|
-        h[headers[index]] = v
+        h[headers[index].downcase.underscore.to_sym] = v
       end
       @data << h
     end

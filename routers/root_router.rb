@@ -14,11 +14,17 @@ module OpenCost
     get '/results' do
       @employer = params[:e].titleize
       @procedure = params[:p]
+      @results = dataset.where(employer_slug: params[:e])
       slim :results
     end
 
     get '/' do
       slim :hello
+    end
+
+
+    def dataset
+      @dataset ||= Dataset.new(File.join(ROOT_DIR,"data","data.csv"))
     end
   end
 end

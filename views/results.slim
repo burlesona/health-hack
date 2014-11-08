@@ -5,5 +5,27 @@
   hr
 
   h3 Search Results:
-  .results
+  ul.results
+    - @results.each do |result|
+      li.result
+        - if result[:image]
+          img src==(result[:image])
+        - if result[:last]
+          h1= [result[:first],result[:last]].join(" ")
+          .specialty = result[:speciality]
+          .facility = result[:affiliation]
+        - else
+          h1= result[:affiliation]
+          .specialty = result[:speciality]
+
+        .address= result[:address]
+        .locale= "#{result[:city]}, #{result[:state]} #{result[:zip]}"
+        .price
+          span.label<> Price Range
+          span.lower= "$#{result[:cll]}"
+          | -
+          span.upper= "$#{result[:cul]}"
+
+
+
 

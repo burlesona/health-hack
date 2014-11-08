@@ -29,7 +29,9 @@ header.hello {
   h1 { font-size: 18px; }
   .location { margin-top: 20px; }
 
-  .price { margin-bottom: 10px; }
   .label { font-weight: 700; }
-  .value { font-size: 24px; }
+  .price { margin-bottom: 10px;
+    &.total .value { color: #64AD43; font-size: 24px; }
+  }
+
 }

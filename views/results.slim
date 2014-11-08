@@ -1,14 +1,18 @@
 .wrapper
-  h1 = @employer
-  p Expected Cost for:
+  .employer #{@employer} Employee Healthcare Cost Estimates
+
   form.search action="/results" method="get"
     input type="hidden" name="e" value== params[:e]
+    label Procedure:
     input.procedure type="text" name="p" value== @procedure
     button Search
 
   hr
 
-  h3 Search Results:
+  h3
+    - if @results.first
+      | Expected cost for #{@results.first[:procedure]}
+
   ul.results
     - @results.each do |result|
       li.result
@@ -31,16 +35,26 @@
             = "#{result[:city]}, #{result[:state]} #{result[:zip]}"
 
         .numbers
-          .price
-            .label Price Range
+          .price.total
+            .label Total Cost
             .value
               span.lower= money(result[:cll])
               span.sep<> -
               span.upper= money(result[:cul])
 
+          .price.oop
+            .label Out of Pocket Cost
+            .value
+              span.lower= money(result[:oopm_p1])
+              span.sep<> -
+              span.upper= money(result[:oopm_p2])
+
           .rating
             .label Provider Rating
             .value = "#{result[:rating]} / 5"
+
+  - if @results.count == 0
+    p Sorry, no results found.
 
 
 

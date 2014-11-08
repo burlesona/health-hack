@@ -20,7 +20,7 @@ module OpenCost
       @employer = params[:e].titleize
       @procedure = params[:p]
       @results = dataset.where(employer_slug: params[:e])
-      @results.keep_if{|d| !!d[:procedure].downcase.include?( @procedure.downcase ) }
+      @results.keep_if{|d| @procedure.split(" ").any?{|w| d[:procedure].downcase.include?(w.downcase) }}
       slim :results
     end
 

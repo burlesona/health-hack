@@ -5,7 +5,12 @@ module OpenCost
   class RootRouter < Sinatra::Base
     # Configuration
     set :views, 'views'
-    enable :sessions
+
+    helpers do
+      def money(string)
+        Money.new((string + "00").to_i).format(:no_cents => true)
+      end
+    end
 
     post '/search' do
       redirect to("/results?e=#{params[:employer].parameterize}&p=#{params[:procedure]}")
@@ -15,6 +20,7 @@ module OpenCost
       @employer = params[:e].titleize
       @procedure = params[:p]
       @results = dataset.where(employer_slug: params[:e])
+      @results.keep_if{|d| !!d[:procedure].downcase.include?( @procedure.downcase ) }
       slim :results
     end
 
@@ -24,7 +30,7 @@ module OpenCost
 
 
     def dataset
-      @dataset ||= Dataset.new(File.join(ROOT_DIR,"data","data.csv"))
+      @dataset ||= Dataset.new(File.join(ROOT_DIR,"data","data2.csv"))
     end
   end
 end

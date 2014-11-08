@@ -1,30 +1,48 @@
 .wrapper
   h1 = @employer
   p Expected Cost for:
-  input type="text" name="procedure" value== @procedure
+  form.search action="/results" method="get"
+    input type="hidden" name="e" value== params[:e]
+    input.procedure type="text" name="p" value== @procedure
+    button Search
+
   hr
 
   h3 Search Results:
   ul.results
     - @results.each do |result|
       li.result
-        - if result[:image]
-          img src==(result[:image])
-        - if result[:last]
-          h1= [result[:first],result[:last]].join(" ")
-          .specialty = result[:speciality]
-          .facility = result[:affiliation]
-        - else
-          h1= result[:affiliation]
-          .specialty = result[:speciality]
+        .image
+          - if result[:image]
+            img src==(result[:image])
 
-        .address= result[:address]
-        .locale= "#{result[:city]}, #{result[:state]} #{result[:zip]}"
-        .price
-          span.label<> Price Range
-          span.lower= "$#{result[:cll]}"
-          | -
-          span.upper= "$#{result[:cul]}"
+        .identity
+          - if result[:last]
+            h1= [result[:first],result[:last]].join(" ")
+            .specialty = result[:speciality]
+            .facility = result[:affiliation]
+          - else
+            h1= result[:affiliation]
+            .specialty = result[:speciality]
+
+          .location
+            = result[:address]
+            br
+            = "#{result[:city]}, #{result[:state]} #{result[:zip]}"
+
+        .numbers
+          .price
+            .label Price Range
+            .value
+              span.lower= money(result[:cll])
+              span.sep<> -
+              span.upper= money(result[:cul])
+
+          .rating
+            .label Provider Rating
+            .value = "#{result[:rating]} / 5"
+
+
 
 
 

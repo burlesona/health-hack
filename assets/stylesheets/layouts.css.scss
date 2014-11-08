@@ -6,4 +6,30 @@ header.hello {
   h2 { font-size: 16px; }
 
 }
+
 .wrapper { width: 80%; margin: 0 auto; }
+
+// Search Form
+.search {
+  .procedure { width: 60%; display: inline-block; margin-right: 2%; vertical-align: top; }
+  button { display: inline-block; vertical-align: top; height: 36px; padding: 0 14px; }
+}
+
+
+// Search Results
+.results { margin-top: 10px; }
+.result {
+  padding-bottom: 10px; border-bottom: 1px solid $light_gray; margin-bottom: 10px;
+  @include clearfix;
+
+  .image { float: left; width: 15%; margin-right: 2%; }
+  .identity { float: left; width: 53%; }
+  .numbers { float:left; width: 30%; }
+
+  h1 { font-size: 18px; }
+  .location { margin-top: 20px; }
+
+  .price { margin-bottom: 10px; }
+  .label { font-weight: 700; }
+  .value { font-size: 24px; }
+}

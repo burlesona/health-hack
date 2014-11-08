@@ -12,6 +12,7 @@ gem 'slim'
 gem 'sass'
 gem 'bourbon'
 gem 'bitters'
+gem 'money'
 
 group :development do
   gem 'pry'

@@ -1,6 +1,7 @@
 require 'dotenv'
 require 'active_support/core_ext/string'
 require 'active_support/core_ext/hash'
+require 'money'
 
 # Configure Environment
 ROOT_DIR = Dir.pwd

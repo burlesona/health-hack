@@ -7,12 +7,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    better_errors (2.0.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     bitters (0.10.1)
       bourbon (>= 3.2)
       sass (>= 3.2)
@@ -26,11 +20,9 @@ GEM
       execjs
     coffee-script-source (1.7.1)
     daemons (1.1.9)
-    debug_inspector (0.0.2)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
-    erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
     hike (1.2.3)
@@ -81,13 +73,10 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  better_errors
-  binding_of_caller
   bitters
   bourbon
   coffee-script
   dotenv
-  minitest
   pry
   sass
   sinatra

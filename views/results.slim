@@ -1,9 +1,14 @@
+header.results
+  .wrapper
+    a href="/"
+      img.logo src="/assets/images/logo-2-blue.png"
+    .employer #{@employer} Employee Healthcare Cost Estimates
+
 .wrapper
-  .employer #{@employer} Employee Healthcare Cost Estimates
 
   form.search action="/results" method="get"
     input type="hidden" name="e" value== params[:e]
-    label Procedure:
+    label Search by Procedure
     input.procedure type="text" name="p" value== @procedure
     button Search
 

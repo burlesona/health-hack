@@ -1,65 +1,66 @@
-header.results
+body
+  header.results
+    .wrapper
+      a href="/"
+        img.logo src="/assets/images/logo-2-blue.png"
+      .employer #{@employer} Employee Healthcare Cost Estimates
+
   .wrapper
-    a href="/"
-      img.logo src="/assets/images/logo-2-blue.png"
-    .employer #{@employer} Employee Healthcare Cost Estimates
 
-.wrapper
+    form.search action="/results" method="get"
+      input type="hidden" name="e" value== params[:e]
+      label Search by Procedure
+      input.procedure type="text" name="p" value== @procedure
+      button Search
 
-  form.search action="/results" method="get"
-    input type="hidden" name="e" value== params[:e]
-    label Search by Procedure
-    input.procedure type="text" name="p" value== @procedure
-    button Search
+    hr
 
-  hr
+    h3
+      - if @results.first
+        | Expected cost for #{@results.first[:procedure]}
 
-  h3
-    - if @results.first
-      | Expected cost for #{@results.first[:procedure]}
+    ul.results
+      - @results.each do |result|
+        li.result
+          .image
+            - if result[:image]
+              img src==(result[:image])
 
-  ul.results
-    - @results.each do |result|
-      li.result
-        .image
-          - if result[:image]
-            img src==(result[:image])
+          .identity
+            - if result[:last]
+              h1= [result[:first],result[:last]].join(" ")
+              .specialty = result[:speciality]
+              .facility = result[:affiliation]
+            - else
+              h1= result[:affiliation]
+              .specialty = result[:speciality]
 
-        .identity
-          - if result[:last]
-            h1= [result[:first],result[:last]].join(" ")
-            .specialty = result[:speciality]
-            .facility = result[:affiliation]
-          - else
-            h1= result[:affiliation]
-            .specialty = result[:speciality]
+            .location
+              = result[:address]
+              br
+              = "#{result[:city]}, #{result[:state]} #{result[:zip]}"
 
-          .location
-            = result[:address]
-            br
-            = "#{result[:city]}, #{result[:state]} #{result[:zip]}"
+          .numbers
+            .price.total
+              .label Total Cost
+              .value
+                span.lower= money(result[:cll])
+                span.sep<> -
+                span.upper= money(result[:cul])
 
-        .numbers
-          .price.total
-            .label Total Cost
-            .value
-              span.lower= money(result[:cll])
-              span.sep<> -
-              span.upper= money(result[:cul])
+            .price.oop
+              .label Out of Pocket Cost
+              .value
+                span.lower= money(result[:oopm_p1])
+                span.sep<> -
+                span.upper= money(result[:oopm_p2])
 
-          .price.oop
-            .label Out of Pocket Cost
-            .value
-              span.lower= money(result[:oopm_p1])
-              span.sep<> -
-              span.upper= money(result[:oopm_p2])
+            .rating
+              .label Provider Rating
+              .value = "#{result[:rating]} / 5"
 
-          .rating
-            .label Provider Rating
-            .value = "#{result[:rating]} / 5"
-
-  - if @results.count == 0
-    p Sorry, no results found.
+    - if @results.count == 0
+      p Sorry, no results found.
 
 
 

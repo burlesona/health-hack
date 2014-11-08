@@ -1,18 +1,18 @@
-header.hello
-  .wrapper
-    h1
-      img.logo src="/assets/images/logo-2.png"
-    h2 Bringing Transparency to Healthcare Costs
+body.hello
+  .hello-wrapper
+    header.hello
+      h1
+        img.logo src="/assets/images/logo-2.png"
+      h2 Bringing Transparency to Healthcare Costs
 
-.wrapper
-  form#query method="POST" action="/search"
-    p I work for:
-    select name="employer"
-      option Raytheon
-      option Target
-      option Wendy's
+    form#query method="POST" action="/search"
+      span I work for:
+      select.employer name="employer"
+        option Raytheon
+        option Target
+        option Wendy's
 
-    p I want to know the expected cost for:
-    input type="text" name="procedure"
+      p I want to know the expected cost for:
+      input.procedure type="text" name="procedure"
 
-    button Search
+      button.search Search

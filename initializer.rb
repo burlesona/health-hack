@@ -2,7 +2,7 @@ require 'dotenv'
 require 'better_errors'
 require 'binding_of_caller'
 require 'rethinkdb'
-require 'active_support/core_ext/hash'
+require 'active_support/all'
 
 # Configure Environment
 ROOT_DIR = Dir.pwd

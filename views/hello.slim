@@ -2,13 +2,13 @@ header.hello
   h1 Open Cost
   h2 Bringing Transparency to Healthcare Costs
 
-.main
-  form#query
+.wrapper
+  form#query method="POST" action="/search"
     p I work for:
     select name="employer"
       option Raytheon
-      option Fidelity
-      option Dunkin Donuts
+      option Target
+      option Wendy's
 
     p I want to know the expected cost for:
     input type="text" name="procedure"
